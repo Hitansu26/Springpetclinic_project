@@ -3,8 +3,9 @@ pool:
   vmImages: 'ubuntu-latest'
 
 jobs: 
-  - job: Buildspc
-    displayName: Build Code
+- job: Buildspc
+  displayName: Build Code
+  steps:
   - task: Maven@4
     inputs:
       mavenPOMFile: 'pom.xml'
