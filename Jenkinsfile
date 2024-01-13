@@ -1,16 +1,21 @@
 pipeline {
     agent {
-        label { 'MAVEN' }
+        label  'MAVEN' 
     }
     options { timeout(time: 30, unit: 'MINUTE') }
     triggers { pollSCM('* * * * *') }
     stages {
         stage('git-clone') {
-            git url: 'https://github.com/spring-projects/spring-petclinic.git'
-                branch: 'main'
+            steps {
+                git url: 'https://github.com/spring-projects/spring-petclinic.git'
+                    branch: 'main'
+            }
+            
         }
         stage('build') {
-            sh 'mvn clean package'
+            steps {
+                sh 'mvn clean package'
+            }
         }
     }
 }
